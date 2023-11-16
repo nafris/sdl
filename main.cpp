@@ -22,6 +22,12 @@ int main()
 		std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
 		return -1;
 	}
+	SDL_Surface *image = SDL_LoadBMP("image.bmp");
+	if(!image){
+		std::cout << "Failed to load image\n";
+		std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
+		return -1;
+	}
 	bool keep_window_open = true;
 	SDL_Event e;
 	while(keep_window_open){
@@ -31,6 +37,7 @@ int main()
 					keep_window_open = false;
 					break;
 			}
+			SDL_BlitSurface(image, NULL, window_surface, NULL);
 			SDL_UpdateWindowSurface(window);
 		}	
 	}
