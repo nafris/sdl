@@ -10,25 +10,29 @@ int main()
 
     SDL_Window *window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 680, 480, 0);
 
-	if(!window)
-	{
+	if(!window){
 		std::cout << "Failed to create window\n";
 		return -1;
 	}
 
 	SDL_Surface *window_surface = SDL_GetWindowSurface(window);
 
-	if(!window_surface)
-	{
+	if(!window_surface){
 		std::cout << "Failed to get the surface from the window\n";
+		std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
 		return -1;
 	}
-	//SDL_SetRenderDrawColor(window_surface, 255, 255, 255, 255);
-	//SDL_RenderDrawRect(window_surface, &rect);
-	//SDL_RenderDrawColor(window_surface,0, 0, 0, 255);
-	//SDL_RenderPresent(window_surface);
-	SDL_UpdateWindowSurface(window);
-
-	SDL_Delay(5000);
+	bool keep_window_open = true;
+	SDL_Event e;
+	while(keep_window_open){
+		while(SDL_PollEvent(&e) > 0){
+			switch(e.type){
+				case SDL_QUIT:
+					keep_window_open = false;
+					break;
+			}
+			SDL_UpdateWindowSurface(window);
+		}	
+	}
 }
 
