@@ -8,7 +8,8 @@ class Application{
 		Application();
 		~Application();
 		
-		void update();
+		void loop();
+		void update(double delta_time);
 		void draw();
 	private:
 		SDL_Surface *m_image;
@@ -17,4 +18,7 @@ class Application{
 		SDL_Window *m_window;
 		SDL_Surface *m_window_surface;
 		SDL_Event m_window_event;
+		
+		double m_image_x;
+		double m_image_y;
 };
