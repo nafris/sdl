@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include <iostream>
+#include "stick_figure.hpp"
 
 class Application{
 	public:
@@ -12,8 +13,10 @@ class Application{
 		void update(double delta_time);
 		void draw();
 	private:
-		SDL_Surface *m_image;
-		SDL_Rect m_image_position;
+		StickFigure m_stick_figure;
+		
+		//SDL_Surface *m_image;
+		//SDL_Rect m_image_position;
 		
 		SDL_Window *m_window;
 		SDL_Surface *m_window_surface;

@@ -26,15 +26,15 @@ Application::Application(){
 	}
 	
 		
-	m_image_position.x = 0;
-	m_image_position.y = 0;
-	m_image_position.w = 50;
-	m_image_position.h = 50;
+	//m_image_position.x = 0;
+	//m_image_position.y = 0;
+	//m_image_position.w = 50;
+	//m_image_position.h = 50;
 	
-	m_image_x = 0.0;
-	m_image_y = 0.0;
+	//m_image_x = 0.0;
+	//m_image_y = 0.0;
 	
-	m_image = load_surface("image.bmp");
+	//m_image = load_surface("image.bmp");
 }
 
 Application::~Application(){
@@ -44,13 +44,15 @@ Application::~Application(){
 }
 
 void Application::update(double delta_time){
-	m_image_x = m_image_x + (5 * delta_time);
-	m_image_position.x = m_image_x;
+	m_stick_figure.update(delta_time);
+	//m_image_x = m_image_x + (5 * delta_time);
+	//m_image_position.x = m_image_x;
 }
 
 void Application::draw(){
 	SDL_FillRect(m_window_surface, NULL, SDL_MapRGB(m_window_surface->format,0 ,0 ,0));
-	SDL_BlitSurface(m_image, NULL, m_window_surface, &m_image_position);
+	//SDL_BlitSurface(m_image, NULL, m_window_surface, &m_image_position);
+	m_stick_figure.draw(m_window_surface);
 	SDL_UpdateWindowSurface(m_window);
 }
 void Application::loop(){
