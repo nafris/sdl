@@ -50,7 +50,7 @@ void Application::update(double delta_time){
 }
 
 void Application::draw(){
-	SDL_FillRect(m_window_surface, NULL, SDL_MapRGB(m_window_surface->format,0 ,0 ,0));
+	SDL_FillRect(m_window_surface, nullptr, SDL_MapRGB(m_window_surface->format,0 ,0 ,0));
 	//SDL_BlitSurface(m_image, NULL, m_window_surface, &m_image_position);
 	m_stick_figure.draw(m_window_surface);
 	SDL_UpdateWindowSurface(m_window);
@@ -59,6 +59,7 @@ void Application::loop(){
 	bool keep_window_open = true;
 	while(keep_window_open){
 		while(SDL_PollEvent(&m_window_event) > 0){
+			m_stick_figure.handle_events(m_window_event);
 			switch(m_window_event.type){
 				case SDL_QUIT:
 					keep_window_open = false;
